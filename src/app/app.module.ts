@@ -8,6 +8,7 @@ import { ActivePostComponent } from './components/active-post/active-post.compon
 import { InactivePostComponent } from './components/inactive-post/inactive-post.component';
 import { FormsModule } from '@angular/forms';
 import { Route, RouterModule } from '@angular/router';
+import { CardComponent } from './components/card/card.component';
 
 const routes: Route[] = [
   {
@@ -31,7 +32,8 @@ const routes: Route[] = [
     HomeComponent,
     NavbarComponent,
     ActivePostComponent,
-    InactivePostComponent
+    InactivePostComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,
