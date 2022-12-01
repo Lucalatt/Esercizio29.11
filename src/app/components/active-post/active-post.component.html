@@ -1,11 +1,16 @@
 <div class="container">
-  <div *ngFor="let post of posts,let i = index">
-      <div *ngIf="post.active" class="card mb-4">
-          <app-card [post]="post">
-            <div class="container">
-              <button class="btn btn-primary" (click)="onInactivePost(post.id, i)">Disattiva</button>
-            </div>
-          </app-card>
-      </div>
+  <div *ngFor="let post of posts; let i = index">
+    <div *ngIf="post.active" class="card m-2">
+      <app-card [post]="post">
+        <div class="container">
+          <button class="btn btn-primary m-2" (click)="movePost(post.id)">
+            Disattiva
+          </button>
+          <button class="btn btn-primary m-2" (click)="deletePost(post.id)">
+            Cancella
+          </button>
+        </div>
+      </app-card>
+    </div>
   </div>
 </div>

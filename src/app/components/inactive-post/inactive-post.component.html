@@ -3,7 +3,8 @@
       <div *ngIf="!post.active" class="card mb-4">
           <app-card [post]="post">
             <div class="container">
-              <button class="btn btn-primary" (click)="onActivePost(post.id, i)">Attiva</button>
+              <button class="btn btn-primary m-2" (click)="movePost(post.id)">Attiva</button>
+              <button class="btn btn-primary m-2" (click)="deletePost(post.id)">Cancella</button>
             </div>
           </app-card>
       </div>

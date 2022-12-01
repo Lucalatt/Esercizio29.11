@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from 'src/app/models/post';
-import { getPost, updatePost } from 'src/app/service/post.service';
+import { getPost } from 'src/app/service/post.service';
 
 @Component({
   selector: 'app-inactive-post',
@@ -11,21 +11,47 @@ export class InactivePostComponent implements OnInit {
   posts!: Post[]
   constructor() {
     getPost().then(posts => {
-      this.posts = posts
+      this.posts = posts.list
+      this.inactivePosts()
     })
+  }
+
+  ngOnInit(): void {
+
   }
 
   inactivePosts() {
     this.posts = this.posts.filter(post => !post.active);
   }
 
-  ngOnInit(): void {
+
+  movePost = (id: number) => {
+    fetch('http://localhost:3000/list' + '/' + id, {
+      method: 'PATCH',
+      body: JSON.stringify({
+        active: true,
+      }),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8'
+      },
+    })
+    location.reload();
   }
 
-  onActivePost(id: number, i: number) {
-    updatePost({ active: true }, id);
-    this.posts.splice(i, 1);
-}
+
+  deletePost = (id: number) => {
+    fetch('http://localhost:3000/list' + '/' + id, {
+      method: 'DELETE',
+      body: JSON.stringify({
+        active: false,
+      }),
+      headers: {
+        'Content-type' : 'application/json; charset=UTF-8'
+      },
+    })
+    location.reload();
+  }
+
 }
 
 
